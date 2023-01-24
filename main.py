@@ -1,12 +1,10 @@
-import requests
+from craiyon import Craiyon
 
-text = input("Please write your prompt here:")
-r = requests.post(
-    "https://api.deepai.org/api/text2img",
-    data={
-        'text': text,
-    },
-    headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'},
-    timeout= 30.0
-)
-print(r.json())
+generator = Craiyon()
+
+
+text = "dream of " + input("please insert the text of your dream \n")
+result = generator.generate(text)
+result.save_images()
+
+print("images generated")

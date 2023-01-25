@@ -1,2 +1,2 @@
 craiyon.py
-"kivy[base]"
+kivy

@@ -1,0 +1,19 @@
+<MyRoot>:
+
+    random_label: random_label
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "DreamVision"
+            font_size: 64
+            
+        Label: 
+            id: random_label
+            text: "-"
+            font_size: 64
+
+        Button: 
+            text: "Generate a dream"
+            font_size: 32
+            size: 100, 50
+            on_press: root.generate_number()

@@ -1,1 +1,2 @@
 craiyon.py
+"kivy[base]"

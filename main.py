@@ -1,10 +1,9 @@
 from craiyon import Craiyon
 
-generator = Craiyon()
-
-
-text = "dream of " + input("please insert the text of your dream \n")
-result = generator.generate(text)
-result.save_images()
-
-print("images generated")
+def generate_dream(text):
+    """generates pictures of the described dream"""
+    generator = Craiyon()
+    result = generator.generate(text)
+    result.save_images()
+    print("images generated")
+    return result

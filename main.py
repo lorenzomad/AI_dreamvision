@@ -1,6 +1,5 @@
 from craiyon import Craiyon
 
-
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty

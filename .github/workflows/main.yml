@@ -16,7 +16,7 @@ jobs:
         id: buildozer
         with:
           command: buildozer android debug
-          repository root: .
+          repository_root: .
           #workdir contains the buildozer.spec 
           workdir: test_app
           buildozer_version: stable

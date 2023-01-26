@@ -2,6 +2,9 @@
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
+from kivy.uix.screenmanager import Screen, ScreenManager
+from kivy.uix.boxlayout import BoxLayout
+ 
 
 #from kivy.uix.boxlayout import BoxLayout
 import random
@@ -22,12 +25,7 @@ class Main(MDApp):
         
         if self.root.dream_text.text != None:
             main.generate_dream(self.root.dream_text.text)
-        #label = self.root.ids.random_label
-        #label.text = str(random.randint(1,10))
         
-    
-
-
-
+        
 dreamvision = Main()
 dreamvision.run()

@@ -1,26 +1,23 @@
-import kivy
-kivy.require('2.1.0')
+#import kivymd
+from kivymd.app import MDApp
+from kivy.lang import Builder
 
-from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
+#from kivy.uix.boxlayout import BoxLayout
 import random
 
 import main
 
 
-class MyRoot(BoxLayout):
-
-    def __init__(self):
-        super(MyRoot, self).__init__()
-
-    def generate_number(self):
-
-        self.random_label.text = str(random.randint(1,10))
-
-class DreamVision(App):
+class Main(MDApp):
 
     def build(self):
-        return MyRoot()
+        return Builder.load_file("dreamvision.kv")
 
-dreamvision = DreamVision()
+    def generate_number(self):
+        label = self.root.ids.random_label
+        label.text = str(random.randint(1,10))
+
+
+
+dreamvision = Main()
 dreamvision.run()

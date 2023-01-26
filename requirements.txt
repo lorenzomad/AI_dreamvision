@@ -1,3 +1,4 @@
 craiyon.py
 kivy
+kivymd
 buildozer==0.11

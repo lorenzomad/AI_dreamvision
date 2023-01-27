@@ -1,16 +1,17 @@
 #:kivy 2.1.0
 <Content>
     orientation: "vertical"
+    adaptive_height: True
     MDTextField:
         hint_text: 'Title of your dream'
-        icon_right: "account-search"
         required: True
+        multiline: False
     
     MDTextField:
         hint_text: 'Describe your dream'
-        icon_right: "account-search"
         required: True
-
+        multiline: False
+        
 MDScreen:
 
     # dream_text : text

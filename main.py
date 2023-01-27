@@ -4,7 +4,6 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import Screen, ScreenManager
-from kivy.uix.boxlayout import BoxLayout
  
 
 #from kivy.uix.boxlayout import BoxLayout
@@ -17,6 +16,10 @@ class Main(MDApp):
     """class that runs the dreamvision.kv file to visualize the frontend"""
     
     dream_text = ObjectProperty(None)
+
+    data = {
+        'Add dream': 'pencil'
+    }
 
     def build(self):
         return Builder.load_file("dreamvision.kv")

@@ -1,14 +1,14 @@
 #:kivy 2.1.0
 
 
-Screen:
+MDScreen:
 
-    dream_text : text
+    # dream_text : text
 
     BoxLayout:
         orientation: 'vertical'
         MDTopAppBar:
-            title: "MDTopAppbar"
+            title: "DreamVision"
             left_action_items: [["menu", lambda x: nav_draw.set_state()]]
         Widget:
     
@@ -17,41 +17,45 @@ Screen:
         MDScreenManager:
             id: screen_manager
             MDScreen:
+                
                 name: "scr1"
-                dream_text : text
+                # dream_text : text
 
-                MDLabel:
-                    text: "DreamVision"
-                    font_size: 64
-                    halign: "center"
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+                AnchorLayout:
+                    anchor_x: 'center'
+                    anchor_y: 'center'
                     
+
                     
-                MDLabel: 
-                    id: random_label
-                    text: "-"
-                    font_size: 64
-                    halign: "center"
+                    Image: 
+                        source: 'images/dream_icon.jpg'
+                        size_hint: 0.3, 0.3
 
-                MDTextField:
-                    id: text  
-                    hint_text: 'Describe your dream'
-                    helper_text: 'Forgot your dream?'
-                    helper_text_mode: "on_focus" 
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.3}
-                    size_hint_x: None
-                    width: 300
-                    icon_right: "account-search"
-                    required: True
+                    MDFloatingActionButtonSpeedDial:
+                        data: app.data
+                        root_button_anim: True
+                        hint_animation: True
+                        on_press_stack_button: print("ciao")
+
+                    # MDTextField:
+                    #     id: text  
+                    #     hint_text: 'Describe your dream'
+                    #     helper_text: 'Forgot your dream?'
+                    #     helper_text_mode: "on_focus" 
+                    #     pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+                    #     size_hint_x: None
+                    #     width: 300
+                    #     icon_right: "account-search"
+                    #     required: True
 
 
-                MDRaisedButton: 
-                    text: "Generate a dream"
-                    font_size: 32
-                    size: 100, 50
-                    halign: "center"
-                    pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-                    on_press: app.generate_dream()
+                    # MDRaisedButton: 
+                    #     text: "Generate a dream"
+                    #     font_size: 32
+                    #     size: 100, 50
+                    #     halign: "center"
+                    #     pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+                    #     on_press: app.generate_dream()
         
             MDScreen:
                 name: "scr2"

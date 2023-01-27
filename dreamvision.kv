@@ -14,9 +14,9 @@ Screen:
     
     
     MDNavigationLayout:
-        ScreenManager:
+        MDScreenManager:
             id: screen_manager
-            Screen:
+            MDScreen:
                 name: "scr1"
                 dream_text : text
 
@@ -53,7 +53,7 @@ Screen:
                     pos_hint: {'center_x': 0.5, 'center_y': 0.1}
                     on_press: app.generate_dream()
         
-            Screen:
+            MDScreen:
                 name: "scr2"
                 MDLabel:
                     text: "Dream Gallery"

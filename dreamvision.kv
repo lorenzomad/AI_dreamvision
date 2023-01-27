@@ -1,5 +1,15 @@
 #:kivy 2.1.0
-
+<Content>
+    orientation: "vertical"
+    MDTextField:
+        hint_text: 'Title of your dream'
+        icon_right: "account-search"
+        required: True
+    
+    MDTextField:
+        hint_text: 'Describe your dream'
+        icon_right: "account-search"
+        required: True
 
 MDScreen:
 
@@ -35,7 +45,7 @@ MDScreen:
                         data: app.data
                         root_button_anim: True
                         hint_animation: True
-                        on_press_stack_button: print("ciao")
+                        on_press_stack_button: app.show_dream_popup()
 
                     # MDTextField:
                     #     id: text  

@@ -3,11 +3,9 @@ from craiyon import Craiyon
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.properties import StringProperty
-# from kivy.uix.screenmanager import Screen, ScreenManager
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.boxlayout import MDBoxLayout
-# from kivymd.uix.textfield import MDTextField
  
 
 class Content(MDBoxLayout):
@@ -18,10 +16,6 @@ class Main(MDApp):
     
     dream_text = None
     dream_text = StringProperty(None)
-
-    data = {
-        'Add dream': 'pencil'
-    }
 
     dialog = None
 
@@ -40,27 +34,6 @@ class Main(MDApp):
             print("images generated")
             return result
         
-    # def show_dream_popup(self):
-    #     if not self.dialog:
-    #         self.dialog = MDDialog(
-    #             title="Add dream",
-    #             type="custom",
-    #             content_cls= Content(),
-    #             buttons=[
-    #                 MDFlatButton(
-    #                     text="CANCEL",
-    #                     theme_text_color="Custom",
-    #                     text_color=self.theme_cls.primary_color                        
-    #                 ),
-    #                 MDFlatButton(
-    #                     text="OK",
-    #                     theme_text_color="Custom",
-    #                     text_color=self.theme_cls.primary_color,
-    #                     on_press= self.generate_dream()
-    #                 ),
-    #             ],
-    #         )
-    #     self.dialog.open()
 
 dreamvision = Main()
 dreamvision.run()

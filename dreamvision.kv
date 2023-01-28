@@ -2,8 +2,9 @@
 
         
 MDScreen:
+    dream_title: title_text
+    dream_description : description_text
 
-    dream_text : text
 
     BoxLayout:
         orientation: 'vertical'
@@ -28,6 +29,7 @@ MDScreen:
                         size_hint: 0.3, 0.3
 
                     MDTextField:
+                        id: title_text
                         hint_text: 'Title of your dream'
                         required: True
                         multiline: False
@@ -35,7 +37,7 @@ MDScreen:
                         size_hint: 0.8, 0.1
 
                     MDTextField:
-                        id: text  
+                        id: description_text  
                         hint_text: 'Describe your dream'
                         multiline: False
                         icon_right: "account-search"

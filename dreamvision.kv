@@ -1,20 +1,22 @@
 #:kivy 2.1.0
-<Content>
-    orientation: "vertical"
-    adaptive_height: True
-    MDTextField:
-        hint_text: 'Title of your dream'
-        required: True
-        multiline: False
+# <Content>
+#     dream_text:dream_text
+#     orientation: "vertical"
+#     adaptive_height: True
+#     MDTextField:
+#         hint_text: 'Title of your dream'
+#         required: True
+#         multiline: False
     
-    MDTextField:
-        hint_text: 'Describe your dream'
-        required: True
-        multiline: False
+#     MDTextField:
+#         id: dream_text
+#         hint_text: 'Describe your dream'
+#         required: True
+#         multiline: False
         
 MDScreen:
 
-    # dream_text : text
+    dream_text : text
 
     BoxLayout:
         orientation: 'vertical'
@@ -30,43 +32,42 @@ MDScreen:
             MDScreen:
                 
                 name: "scr1"
-                # dream_text : text
+                dream_text : text
 
-                AnchorLayout:
-                    anchor_x: 'center'
-                    anchor_y: 'center'
+                MDBoxLayout:
+                    orientation: 'vertical'
                     
-
+                    # adaptive_size: True
                     
-                    Image: 
-                        source: 'images/dream_icon.jpg'
+                    Image:
+                        source: 'generated/image-1.png'
+                        pos_hint: {"center_x": .5, 'top': 0.8}
                         size_hint: 0.3, 0.3
 
-                    MDFloatingActionButtonSpeedDial:
-                        data: app.data
-                        root_button_anim: True
-                        hint_animation: True
-                        on_press_stack_button: app.show_dream_popup()
+                    MDTextField:
+                        hint_text: 'Title of your dream'
+                        required: True
+                        multiline: False
+                        pos_hint: {"center_x": .5}
+                        size_hint: 0.8, 0.1
 
-                    # MDTextField:
-                    #     id: text  
-                    #     hint_text: 'Describe your dream'
-                    #     helper_text: 'Forgot your dream?'
-                    #     helper_text_mode: "on_focus" 
-                    #     pos_hint: {'center_x': 0.5, 'center_y': 0.3}
-                    #     size_hint_x: None
-                    #     width: 300
-                    #     icon_right: "account-search"
-                    #     required: True
+                    MDTextField:
+                        id: text  
+                        hint_text: 'Describe your dream'
+                        multiline: False
+                        icon_right: "account-search"
+                        required: True
+                        pos_hint: {"center_x": .5}
+                        size_hint: 0.8, 0.1
 
 
-                    # MDRaisedButton: 
-                    #     text: "Generate a dream"
-                    #     font_size: 32
-                    #     size: 100, 50
-                    #     halign: "center"
-                    #     pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-                    #     on_press: app.generate_dream()
+                    MDRaisedButton: 
+                        text: "Generate a dream"
+                        font_size: 32
+                        size: 100, 50
+                        halign: "center"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.1}
+                        on_press: app.generate_dream()
         
             MDScreen:
                 name: "scr2"

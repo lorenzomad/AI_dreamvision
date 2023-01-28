@@ -3,25 +3,27 @@ from craiyon import Craiyon
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.properties import StringProperty
-# from kivy.uix.screenmanager import Screen, ScreenManager
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.boxlayout import MDBoxLayout
-# from kivymd.uix.textfield import MDTextField
+
+import json
+import os
  
 
 class Content(MDBoxLayout):
     pass
 
+save_path = 'save/save.json'
 class Main(MDApp):
     """class that runs the dreamvision.kv file to visualize the frontend"""
     
-    dream_text = None
-    dream_text = StringProperty(None)
-
-    data = {
-        'Add dream': 'pencil'
-    }
+       
+    if os.path.exists(save_path):
+        with open(save_path, "r") as r:
+             save_data = json.load(r)
+    else:
+        save_data = {}
 
     dialog = None
 
@@ -31,36 +33,27 @@ class Main(MDApp):
     def generate_dream(self):
         """generates dream images"""
         
-        if self.root.dream_text.text != None:
+        dream_description = self.root.dream_description.text
+        dream_title = self.root.dream_title.text
+
+        if dream_description != "" and dream_title != "":
             
-            print("image generation started!\n dream used: " + self.root.dream_text.text )
+            print("image generation started!\n dream used: " + dream_description )
             generator = Craiyon()
-            result = generator.generate(self.root.dream_text.text)
+            result = generator.generate(dream_description)
             result.save_images()
             print("images generated")
+
+
+            self.save_data[dream_title] = {
+                "description": dream_description,
+                "location": 'generated/image-1.png'
+             }
+            
+            with open(save_path, "w") as p:
+                json.dump(self.save_data, p)
             return result
         
-    # def show_dream_popup(self):
-    #     if not self.dialog:
-    #         self.dialog = MDDialog(
-    #             title="Add dream",
-    #             type="custom",
-    #             content_cls= Content(),
-    #             buttons=[
-    #                 MDFlatButton(
-    #                     text="CANCEL",
-    #                     theme_text_color="Custom",
-    #                     text_color=self.theme_cls.primary_color                        
-    #                 ),
-    #                 MDFlatButton(
-    #                     text="OK",
-    #                     theme_text_color="Custom",
-    #                     text_color=self.theme_cls.primary_color,
-    #                     on_press= self.generate_dream()
-    #                 ),
-    #             ],
-    #         )
-    #     self.dialog.open()
 
 dreamvision = Main()
 dreamvision.run()

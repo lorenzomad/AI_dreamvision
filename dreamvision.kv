@@ -1,22 +1,10 @@
 #:kivy 2.1.0
-# <Content>
-#     dream_text:dream_text
-#     orientation: "vertical"
-#     adaptive_height: True
-#     MDTextField:
-#         hint_text: 'Title of your dream'
-#         required: True
-#         multiline: False
-    
-#     MDTextField:
-#         id: dream_text
-#         hint_text: 'Describe your dream'
-#         required: True
-#         multiline: False
+
         
 MDScreen:
+    dream_title: title_text
+    dream_description : description_text
 
-    dream_text : text
 
     BoxLayout:
         orientation: 'vertical'
@@ -32,12 +20,8 @@ MDScreen:
             MDScreen:
                 
                 name: "scr1"
-                dream_text : text
-
                 MDBoxLayout:
                     orientation: 'vertical'
-                    
-                    # adaptive_size: True
                     
                     Image:
                         source: 'generated/image-1.png'
@@ -45,6 +29,7 @@ MDScreen:
                         size_hint: 0.3, 0.3
 
                     MDTextField:
+                        id: title_text
                         hint_text: 'Title of your dream'
                         required: True
                         multiline: False
@@ -52,7 +37,7 @@ MDScreen:
                         size_hint: 0.8, 0.1
 
                     MDTextField:
-                        id: text  
+                        id: description_text  
                         hint_text: 'Describe your dream'
                         multiline: False
                         icon_right: "account-search"

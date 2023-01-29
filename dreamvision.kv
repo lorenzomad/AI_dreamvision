@@ -1,6 +1,11 @@
 #:kivy 2.1.0
 
-
+<DummyScreen>:
+    Manager:
+        DummyScreen:
+        WindowOne:
+        WindowTwo:
+        
 <ListItemWithImage>:
     ImageLeftWidget:
         id: image
@@ -13,6 +18,7 @@
 MDScreen:
     dream_title: title_text
     dream_description : description_text
+    main_image : main_image
 
 
     BoxLayout:
@@ -27,13 +33,14 @@ MDScreen:
         MDScreenManager:
             id: screen_manager
             MDScreen:
-                
+                on_pre_enter: app.load_main_image()                
                 name: "scr1"
                 MDBoxLayout:
                     orientation: 'vertical'
                     
                     Image:
-                        source: 'generated/image-1.png'
+                        id: main_image
+                        source: 'images/dream_icon.jpg'
                         pos_hint: {"center_x": .5, 'top': 0.8}
                         size_hint: 0.3, 0.3
 
@@ -70,7 +77,7 @@ MDScreen:
         
             MDScreen:
                 name: "scr2"
-                on_enter: app.load_images()
+                on_enter: app.load_gallery()
                 MDBoxLayout:
                     orientation: 'vertical'
                     MDLabel:

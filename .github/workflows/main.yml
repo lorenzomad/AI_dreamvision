@@ -24,7 +24,7 @@ jobs:
           command: buildozer -v android debug
           repository_root: .
           #workdir contains the buildozer.spec 
-          workdir: test_app
+          workdir: .
           buildozer_version: stable
 
       - name: Upload artifacts

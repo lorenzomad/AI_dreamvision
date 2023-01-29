@@ -37,15 +37,16 @@ class Main(MDApp):
     else:
         save_data = {}
 
+    
     dialog = None
 
     def build(self):
         return Builder.load_file("dreamvision.kv")
+        
 
     def generate_dream(self):
         """generates dream images"""
-        
-        
+                
         dream_description = self.root.dream_description.text
         dream_title = self.root.dream_title.text
 
@@ -85,7 +86,10 @@ class Main(MDApp):
         # date_dialog.bind(on_save=self.on_save)
         # date_dialog.open()
 
-    def load_images(self):
+    def load_main_image(self):
+        self.root.main_image.source = list(self.save_data.values())[0]["location"]
+
+    def load_gallery(self):
         """function to generate the images in the gallery at launch of the screen"""
 
         for title in self.save_data:

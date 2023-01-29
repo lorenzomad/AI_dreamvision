@@ -21,7 +21,7 @@ jobs:
         uses: ArtemSBulgakov/buildozer-action@v1.1.3
         id: buildozer
         with:
-          command: buildozer android debug
+          command: buildozer -v android debug
           repository_root: .
           #workdir contains the buildozer.spec 
           workdir: test_app

@@ -2,19 +2,20 @@ from craiyon import Craiyon
 
 from kivymd.app import MDApp
 from kivy.lang import Builder
-from kivy.properties import StringProperty
-from kivymd.uix.dialog import MDDialog
-from kivymd.uix.button import MDFlatButton
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.pickers import MDDatePicker
-from kivymd.uix.list import TwoLineAvatarListItem
+from kivymd.uix.list import TwoLineAvatarIconListItem
+from kivy.properties import StringProperty
 
 import json
 import os
  
-class ListItemWithImage(TwoLineAvatarListItem):
+class ListItemWithImage(TwoLineAvatarIconListItem):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+    icon = StringProperty("")
+    image_source = StringProperty("")
 
 
 class Content(MDBoxLayout):
@@ -38,6 +39,7 @@ class Main(MDApp):
 
     def generate_dream(self):
         """generates dream images"""
+        
         
         dream_description = self.root.dream_description.text
         dream_title = self.root.dream_title.text
@@ -71,7 +73,9 @@ class Main(MDApp):
             
             self.root.ids['gallery'].add_widget(
                 ListItemWithImage(text=title, 
-                secondary_text =self.save_data[title]["description"]
+                secondary_text = self.save_data[title]["description"],
+                image_source = self.save_data[title]["location"],
+                icon = 'delete'
                 )
             )
         

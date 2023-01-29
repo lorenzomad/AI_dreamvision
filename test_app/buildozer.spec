@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = AI Dream vision
+title = Dream vision
 
 # (str) Package name
-package.name = aidreamvision
+package.name = dreamvision
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = com.aidreamvision
@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,kivymd
+requirements = python3,kivy==2.1.0,kivymd,https://github.com/kivymd/KivyMD/archive/master.zip,sdl2_ttf==2.0.15,pillow
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -95,7 +95,7 @@ fullscreen = 1
 
 # (list) Permissions
 # (See https://python-for-android.readthedocs.io/en/latest/buildoptions/#build-options-1 for all the supported syntaxes and properties)
-android.permissions = INTERNET, WRITE_EXTERNAL_STORAGE
+android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE
 
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host

@@ -19,10 +19,10 @@ source.include_exts = py,png,jpg,kv,atlas
 #source.include_patterns = assets/*,images/*.png
 
 # (list) Source files to exclude (let empty to not exclude anything)
-#source.exclude_exts = spec
+source.exclude_exts = Makefile, README.md, requirements.txt
 
 # (list) List of directory to exclude (let empty to not exclude anything)
-#source.exclude_dirs = tests, bin, venv, generate
+source.exclude_dirs = tests, bin, venv, generated, save
 
 # (list) List of exclusions using pattern matching
 # Do not prefix with './'
@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==2.1.0,kivymd,https://github.com/kivymd/KivyMD/archive/master.zip,sdl2_ttf==2.0.15,pillow
+requirements = python3,kivy==2.1.0,craiyon.py,kivymd,https://github.com/kivymd/KivyMD/archive/master.zip,sdl2_ttf==2.0.15,pillow
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes

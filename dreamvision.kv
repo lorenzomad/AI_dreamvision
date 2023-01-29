@@ -1,5 +1,10 @@
 #:kivy 2.1.0
 
+
+<ListItemWithImage>:
+    ImageLeftWidget:
+        id: image
+        
         
 MDScreen:
     dream_title: title_text
@@ -45,6 +50,11 @@ MDScreen:
                         pos_hint: {"center_x": .5}
                         size_hint: 0.8, 0.1
 
+                    MDIconButton:
+                        icon: 'calendar'
+                        on_release: app.show_date_picker()
+                        padding: '10dp'
+
 
                     MDRaisedButton: 
                         text: "Generate a dream"
@@ -56,9 +66,19 @@ MDScreen:
         
             MDScreen:
                 name: "scr2"
-                MDLabel:
-                    text: "Dream Gallery"
-                    halign: "center"
+                on_enter: app.load_images()
+                MDBoxLayout:
+                    orientation: 'vertical'
+                    MDLabel:
+                        text: "Dream Gallery"
+                        halign: "center"
+                        size_hint: 1,0.2
+
+                    ScrollView:
+                        MDList:
+                            id: gallery
+                            
+
                         
         MDNavigationDrawer:
             id: nav_draw

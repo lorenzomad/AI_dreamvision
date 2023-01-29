@@ -6,10 +6,16 @@ from kivy.properties import StringProperty
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.pickers import MDDatePicker
+from kivymd.uix.list import TwoLineAvatarListItem
 
 import json
 import os
  
+class ListItemWithImage(TwoLineAvatarListItem):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
 
 class Content(MDBoxLayout):
     pass
@@ -53,6 +59,21 @@ class Main(MDApp):
             with open(save_path, "w") as p:
                 json.dump(self.save_data, p)
             return result
+
+    def show_date_picker(self):
+        """Opens the date picker"""
+        date_dialog = MDDatePicker()
+        # date_dialog.bind(on_save=self.on_save)
+        # date_dialog.open()
+
+    def load_images(self):
+        for title in self.save_data:
+            
+            self.root.ids['gallery'].add_widget(
+                ListItemWithImage(text=title, 
+                secondary_text =self.save_data[title]["description"]
+                )
+            )
         
 
 dreamvision = Main()

@@ -1,5 +1,6 @@
 from craiyon import Craiyon
 
+#kivy imports
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivymd.uix.boxlayout import MDBoxLayout
@@ -7,8 +8,12 @@ from kivymd.uix.pickers import MDDatePicker
 from kivymd.uix.list import TwoLineAvatarIconListItem
 from kivy.properties import StringProperty
 
+#general imports
 import json
 import os
+import base64
+from io import BytesIO
+
  
 class ListItemWithImage(TwoLineAvatarIconListItem):
     def __init__(self, **kwargs):
@@ -46,16 +51,28 @@ class Main(MDApp):
 
         if dream_description != "" and dream_title != "":
             
-            print("image generation started!\n dream used: " + dream_description )
+            print("Image generation started! \nDream used: " + dream_description )
             generator = Craiyon()
-            result = generator.generate(dream_description)
-            result.save_images()
-            print("images generated")
+            result = generator.generate("a dream where " + dream_description)
+            images = result.images
+            print("Images generated successfully!")
 
+            condensed_title = dream_title.replace(" ", "") 
+            image_data = base64.b64decode(images[0].replace(" ", "+"))
+            
+            file_name = 'generated/' + condensed_title + ".jpg" 
+            
+            while(os.path.exists(file_name)):
+                file_name += '[1]'
+                
+            
+            with open(file_name, 'wb') as f:
+                f.write(image_data)
 
+            
             self.save_data[dream_title] = {
                 "description": dream_description,
-                "location": 'generated/image-1.png'
+                "location": file_name
              }
             
             with open(save_path, "w") as p:
@@ -69,6 +86,8 @@ class Main(MDApp):
         # date_dialog.open()
 
     def load_images(self):
+        """function to generate the images in the gallery at launch of the screen"""
+
         for title in self.save_data:
             
             self.root.ids['gallery'].add_widget(

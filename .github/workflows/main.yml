@@ -1,4 +1,4 @@
-name: Build
+name: Perform unit tests and android build
 on: [push]
 
 jobs:

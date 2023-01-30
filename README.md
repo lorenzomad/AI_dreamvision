@@ -16,4 +16,4 @@ Dream gallery:
 
 
 Continuous testing and automated building of the apk file with buildozer for kivy
-[![Build](https://github.com/lorenzomad/AI_dreamvision/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/lorenzomad/AI_dreamvision/actions/workflows/main.yml)
+[![Build](https://github.com/lorenzomad/AI_dreamvision/actions/workflows/main.yml/badge.svg)](https://github.com/lorenzomad/AI_dreamvision/actions/workflows/main.yml)

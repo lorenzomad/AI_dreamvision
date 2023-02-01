@@ -131,6 +131,7 @@ dmypy.json
 #application specific folders
 #results of the iamge generation
 generated/ 
+dreams.db
 
 #save data
 save/

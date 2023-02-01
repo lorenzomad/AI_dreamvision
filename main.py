@@ -119,12 +119,12 @@ class Main(MDApp):
 connection = sqlite3.connect("dreams.db")
 cursor = connection.cursor()
 sql_functions.create_db(connection, "schema.sql")
-sql_functions.save_image(connection, 'buongiorno', 'image of coffee', '2023-01-01', 'images')
-sql_functions.read_table(connection)
-# dreamvision = Main()
-# dreamvision.run()
+# sql_functions.save_image(connection, 'buongiorno', 'image of coffee', '2023-01-01', 'images')
+# sql_functions.read_table(connection)
+dreamvision = Main()
+dreamvision.run()
 
-drop_input = input("do you want to drop the table?")
+drop_input = input("Do you want to drop the table?")
 if drop_input.lower() == 'y':
     sql_functions.drop_table(connection)
 

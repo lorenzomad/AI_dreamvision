@@ -31,3 +31,10 @@ def drop_table(connection):
     """function to drop a table"""
     cursor = connection.cursor()
     cursor.execute("""DROP TABLE IF EXISTS dreams;""")
+
+def delete_image(connection, file_name):
+    """deletes one image from the database"""
+    cursor = connection.cursor()
+    cursor.execute(
+        """DELETE FROM dreams
+        WHERE file_name = ?;""", file_name)

@@ -15,7 +15,7 @@ def save_image(connection, title, description, date, save_folder):
     cursor = connection.cursor()
     cursor.execute(
         """insert into dreams (title, description, date, file_name)
-        values (?,?,?,?);""", (title, description, date, save_folder + '/' + title.replace(" ", "_") + '.jpg')
+        values (?,?,?,?);""", (title, description, date, save_folder + '/' + title.lower().replace(" ", "_") + '.jpg')
         )
     connection.commit()
 

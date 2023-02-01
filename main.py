@@ -14,17 +14,18 @@ import os
 import base64
 import sqlite3
 import sql_functions
+from datetime import date
 
-save_path = 'save/save.json'
+# save_path = 'save/save.json'
 
-def import_save(save_path):
-    """imports the saved data from an existing json file into a dictionary"""
-    if os.path.exists(save_path):
-        with open(save_path, "r") as r:
-             save_data = json.load(r)
-    else:
-        save_data = {}
-    return save_data
+# def import_save(save_path):
+#     """imports the saved data from an existing json file into a dictionary"""
+#     if os.path.exists(save_path):
+#         with open(save_path, "r") as r:
+#              save_data = json.load(r)
+#     else:
+#         save_data = {}
+#     return save_data
 
 def create_image(prompt):
     """generates image from the defined prompt"""
@@ -36,24 +37,15 @@ def create_image(prompt):
     image_data = base64.b64decode(images[0].replace(" ", "+"))
     return image_data
  
-def save_image(image_data, save_file, folder_name, title, description):
-    """saves the image to save_file to the defined folder name in a /jpg format """
-    file_name = folder_name + title.replace(" ", "_") + ".jpg" 
+def save_image(image_data, folder_name, title):
+    """saves the image to the defined folder name in a .jpg format """
+    file_name = folder_name + '/' + title.lower().replace(" ", "_") + ".jpg" 
     #append [1] if the file name exists
     while(os.path.exists(file_name)):
-        file_name += '[1]'
+        file_name = file_name + '(1)'
     #write image file to disk
     with open(file_name, 'wb') as f:
         f.write(image_data)
-    #write result
-    save_data = import_save(save_file)
-    save_data[title] = {
-        "description": description,
-        "location": file_name
-        }
-    with open(save_file, "w") as p:
-        json.dump(save_data, p)
-    return save_data
 
 class Gallery_entry(TwoLineAvatarIconListItem):
     # kv custom object to visualize one dream entry
@@ -68,11 +60,12 @@ class Main(MDApp):
     """frontend building class"""
 
     #Import save file  
-    save_data = import_save(save_path)
+    # save_data = import_save(save_path)
     #connect db
     connection = sqlite3.connect("dreams.db")
     cursor = connection.cursor()
     sql_functions.create_db(connection, "schema.sql")
+    
     
     def build(self):
         return Builder.load_file("dreamvision.kv")
@@ -81,16 +74,11 @@ class Main(MDApp):
         """generates dream images"""
         dream_description = self.root.dream_description.text
         dream_title = self.root.dream_title.text
-        self.load_main_image()
-
         if dream_description != "" and dream_title != "":
             image_data = create_image(dream_description)
-            self.save_data = save_image(
-                image_data,
-                save_path,
-                'generated/', 
-                dream_title, 
-                dream_description)
+            self.save_data = save_image(image_data, 'generated', dream_title)
+            sql_functions.save_image(self.connection, dream_title, dream_description, date.today(), 'generated')
+        self.load_main_image()
 
     def show_date_picker(self):
         """Opens the date picker"""
@@ -103,6 +91,7 @@ class Main(MDApp):
         cursor = self.connection.cursor()
         cursor.execute(
             """SELECT file_name FROM dreams
+            ORDER BY id DESC
             LIMIT 1;""")
         results = cursor.fetchall()
         if not results:

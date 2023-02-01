@@ -116,9 +116,16 @@ class Main(MDApp):
         
 
 #connect db
-sql_functions.create_db("dreams.db", "schema.sql")
-dreamvision = Main()
-dreamvision.run()
+connection = sqlite3.connect("dreams.db")
+cursor = connection.cursor()
+sql_functions.create_db(connection, "schema.sql")
+sql_functions.save_image(connection, 'buongiorno', 'image of coffee', '2023-01-01')
+sql_functions.read_table(connection)
+# dreamvision = Main()
+# dreamvision.run()
+
+
+connection.close()
 
 
     

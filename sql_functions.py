@@ -1,24 +1,26 @@
 import sqlite3
 
 
-def create_db(db_name, schema_file):
-    """creates a db (if it doesn't exist) and schema"""
-    connection = sqlite3.connect(db_name)
+def create_db(connection, schema_file):
+    """creates a schema on the connection"""
     cursor = connection.cursor()
     with open(schema_file, 'r') as rf:
         schema = rf.read()
     cursor.executescript(schema)
+    
+
+def save_image(connection, title, description, date, save_folder):
+    cursor = connection.cursor()
+    cursor.execute(
+        """insert into dreams (title, description, date, file_name)
+        values (?,?,?,?)""", (title, description, date, save_folder + '/' + title.replace(" ", "_") + '.jpg')
+        )
     connection.commit()
-    connection.close()
 
 
-    # cursor.execute("""insert into dreams (id, title, description, date, file_name)
-    #                        values
-    #                        (2, 'ciao', 'come va?', '2019-05-02', 'come_va.jpg');
-    #                        """)
-
-
-    # cursor.execute("""SELECT title FROM dreams""")
-    # for row in cursor.fetchall():
-    #     print(row)
+def read_table(connection):
+    cursor = connection.cursor()
+    cursor.execute("""SELECT * FROM dreams""")
+    for row in cursor.fetchall():
+        print(row)
 

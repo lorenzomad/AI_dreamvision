@@ -1,5 +1,6 @@
 import sqlite3
-
+# before using these functions, create a working connection to the db.
+# these functions assume your schema uses dreams as table name.
 
 def create_db(connection, schema_file):
     """creates a schema on the connection"""
@@ -29,4 +30,4 @@ def read_table(connection):
 def drop_table(connection):
     """function to drop a table"""
     cursor = connection.cursor()
-    cursor.execute("""DROP TBALE IF EXISTS dreams;""")
+    cursor.execute("""DROP TABLE IF EXISTS dreams;""")

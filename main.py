@@ -12,6 +12,8 @@ from kivy.properties import StringProperty
 import json
 import os
 import base64
+import sqlite3
+import sql_functions
 
 save_path = 'save/save.json'
 
@@ -113,6 +115,8 @@ class Main(MDApp):
             )
         
 
+#connect db
+sql_functions.create_db("dreams.db", "schema.sql")
 dreamvision = Main()
 dreamvision.run()
 

@@ -14,8 +14,20 @@ import os
 import base64
 from io import BytesIO
 
+save_path = 'save/save.json'
+
+def import_save(save_path):
+    """imports the saved data from an existing json file"""
+    if os.path.exists(save_path):
+        with open(save_path, "r") as r:
+             save_data = json.load(r)
+    else:
+        save_data = {}
+
+    return save_data
  
-class ListItemWithImage(TwoLineAvatarIconListItem):
+class Gallery_entry(TwoLineAvatarIconListItem):
+    # kv custom object to visualize one dream entry
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -23,23 +35,12 @@ class ListItemWithImage(TwoLineAvatarIconListItem):
     image_source = StringProperty("")
 
 
-class Content(MDBoxLayout):
-    pass
-
-save_path = 'save/save.json'
 class Main(MDApp):
-    """class that runs the dreamvision.kv file to visualize the frontend"""
-    
-       
-    if os.path.exists(save_path):
-        with open(save_path, "r") as r:
-             save_data = json.load(r)
-    else:
-        save_data = {}
+    """frontend building class"""
 
+    #Import save file  
+    save_data = import_save(save_path)
     
-    dialog = None
-
     def build(self):
         return Builder.load_file("dreamvision.kv")
         
@@ -87,15 +88,20 @@ class Main(MDApp):
         # date_dialog.open()
 
     def load_main_image(self):
+        """function to laod one image"""
         self.root.main_image.source = list(self.save_data.values())[0]["location"]
 
     def load_gallery(self):
         """function to generate the images in the gallery at launch of the screen"""
 
+        # delete pre-existing widgets
+
+        self.root.ids['gallery'].clear_widgets()
+
         for title in self.save_data:
             
             self.root.ids['gallery'].add_widget(
-                ListItemWithImage(text=title, 
+                Gallery_entry(text=title, 
                 secondary_text = self.save_data[title]["description"],
                 image_source = self.save_data[title]["location"],
                 icon = 'delete'

@@ -16,19 +16,8 @@ import sqlite3
 import sql_functions
 from datetime import date
 
-# save_path = 'save/save.json'
-
-# def import_save(save_path):
-#     """imports the saved data from an existing json file into a dictionary"""
-#     if os.path.exists(save_path):
-#         with open(save_path, "r") as r:
-#              save_data = json.load(r)
-#     else:
-#         save_data = {}
-#     return save_data
-
 def create_image(prompt):
-    """generates image from the defined prompt"""
+    """generates image from the defined prompt using craiyon"""
     print("Image generation started! \nDream used: " + prompt)
     generator = Craiyon()
     result = generator.generate("a dream where " + prompt)
@@ -51,22 +40,17 @@ class Gallery_entry(TwoLineAvatarIconListItem):
     # kv custom object to visualize one dream entry
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-
     icon = StringProperty("")
     image_source = StringProperty("")
 
 
 class Main(MDApp):
     """frontend building class"""
-
-    #Import save file  
-    # save_data = import_save(save_path)
     #connect db
     connection = sqlite3.connect("dreams.db")
     cursor = connection.cursor()
     sql_functions.create_db(connection, "schema.sql")
-    
-    
+        
     def build(self):
         return Builder.load_file("dreamvision.kv")
         
@@ -80,14 +64,14 @@ class Main(MDApp):
             sql_functions.save_image(self.connection, dream_title, dream_description, date.today(), 'generated')
         self.load_main_image()
 
-    def show_date_picker(self):
-        """Opens the date picker"""
-        date_dialog = MDDatePicker()
-        # date_dialog.bind(on_save=self.on_save)
-        # date_dialog.open()
+    # def show_date_picker(self):
+    #     """Opens the date picker"""
+    #     date_dialog = MDDatePicker()
+    #     # date_dialog.bind(on_save=self.on_save)
+    #     # date_dialog.open()
 
     def load_main_image(self):
-        """function to load one image"""
+        """function to load the latest image"""
         cursor = self.connection.cursor()
         cursor.execute(
             """SELECT file_name FROM dreams
@@ -118,13 +102,10 @@ class Main(MDApp):
     def close_connection(self):
         self.connection.close()
         
-
-
-# sql_functions.read_table(connection)
 dreamvision = Main()
 dreamvision.run()
-#sql_functions.save_image(dreamvision.connection, 'buongiorno', 'image of coffee', '2023-01-01', 'generated')
 
+# debug function to drop the table
 # drop_input = input("Do you want to drop the table?")
 # if drop_input.lower() == 'y':
 #     sql_functions.drop_table(dreamvision.connection)

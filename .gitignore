@@ -134,3 +134,4 @@ generated/
 
 #save data
 save/
+save/save.json

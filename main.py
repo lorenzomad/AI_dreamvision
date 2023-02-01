@@ -69,11 +69,14 @@ class Main(MDApp):
 
     #Import save file  
     save_data = import_save(save_path)
+    #connect db
+    connection = sqlite3.connect("dreams.db")
+    cursor = connection.cursor()
+    sql_functions.create_db(connection, "schema.sql")
     
     def build(self):
         return Builder.load_file("dreamvision.kv")
         
-
     def generate_dream(self):
         """generates dream images"""
         dream_description = self.root.dream_description.text
@@ -97,38 +100,47 @@ class Main(MDApp):
 
     def load_main_image(self):
         """function to load one image"""
-        if len(self.save_data) != 0:
-            self.root.main_image.source = list(self.save_data.values())[0]["location"]
+        cursor = self.connection.cursor()
+        cursor.execute(
+            """SELECT file_name FROM dreams
+            LIMIT 1;""")
+        results = cursor.fetchall()
+        if not results:
+            self.root.main_image.source = 'images/dream_icon.jpg'
+        else:
+            self.root.main_image.source = results[0][0]
 
     def load_gallery(self):
         """function to generate the images in the gallery at launch of the screen"""
         # delete pre-existing widgets
         self.root.ids['gallery'].clear_widgets()
+        #obtain list of images
+        dreams = sql_functions.read_table(self.connection)
         # generates image line items
-        for title in self.save_data:
+        for id, title, description, date, file_name in dreams:
             self.root.ids['gallery'].add_widget(
                 Gallery_entry(text=title, 
-                secondary_text = self.save_data[title]["description"],
-                image_source = self.save_data[title]["location"],
+                secondary_text = description + '\n' + date,
+                image_source = file_name,
                 icon = 'delete'
                 )
             )
+
+    def close_connection(self):
+        self.connection.close()
         
 
-#connect db
-connection = sqlite3.connect("dreams.db")
-cursor = connection.cursor()
-sql_functions.create_db(connection, "schema.sql")
-# sql_functions.save_image(connection, 'buongiorno', 'image of coffee', '2023-01-01', 'images')
+
 # sql_functions.read_table(connection)
 dreamvision = Main()
 dreamvision.run()
+#sql_functions.save_image(dreamvision.connection, 'buongiorno', 'image of coffee', '2023-01-01', 'generated')
 
-drop_input = input("Do you want to drop the table?")
-if drop_input.lower() == 'y':
-    sql_functions.drop_table(connection)
+# drop_input = input("Do you want to drop the table?")
+# if drop_input.lower() == 'y':
+#     sql_functions.drop_table(dreamvision.connection)
 
-connection.close()
+dreamvision.close_connection()
 
 
-    
+

@@ -21,11 +21,10 @@ def save_image(connection, title, description, date, save_folder):
 
 
 def read_table(connection):
-    """ function to read from a table"""
+    """ function to read from a table and return the results"""
     cursor = connection.cursor()
     cursor.execute("""SELECT * FROM dreams;""")
-    for row in cursor.fetchall():
-        print(row)
+    return cursor.fetchall()
 
 def drop_table(connection):
     """function to drop a table"""
@@ -37,4 +36,4 @@ def delete_image(connection, file_name):
     cursor = connection.cursor()
     cursor.execute(
         """DELETE FROM dreams
-        WHERE file_name = ?;""", file_name)
+        WHERE file_name = ?""", file_name)

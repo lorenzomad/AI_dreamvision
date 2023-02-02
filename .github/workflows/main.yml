@@ -17,7 +17,6 @@ jobs:
       - name: Install dependencies 
         run: |
           make install
-          make test
       - name: Perform unit tests
         run: |
           make test

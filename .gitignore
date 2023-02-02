@@ -132,6 +132,7 @@ dmypy.json
 #results of the iamge generation
 generated/ 
 dreams.db
+test.db
 
 #save data
 save/

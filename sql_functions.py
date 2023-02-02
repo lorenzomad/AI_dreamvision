@@ -36,4 +36,5 @@ def delete_image(connection, file_name):
     cursor = connection.cursor()
     cursor.execute(
         """DELETE FROM dreams
-        WHERE file_name = ?""", file_name)
+        WHERE file_name=(?)""", (file_name,))
+    connection.commit()

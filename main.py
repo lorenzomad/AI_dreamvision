@@ -48,7 +48,7 @@ class Main(MDApp):
     """frontend building class"""
     #connect db
     connection = sqlite3.connect("dreams.db")
-    cursor = connection.cursor()
+    # cursor = connection.cursor()
     sql_functions.create_db(connection, "schema.sql")
         
     def build(self):

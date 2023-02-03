@@ -7,7 +7,7 @@ def test_creation():
     """test table creation function"""
     connection = sqlite3.connect("test.db")
     cursor = connection.cursor()
-    sql_functions.create_db(connection, "schema.sql")
+    sql_functions.create_db(connection, "../schema.sql")
     cursor.execute(
         ''' SELECT count(name) 
         FROM sqlite_master 

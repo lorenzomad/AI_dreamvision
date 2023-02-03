@@ -4,6 +4,9 @@ setup:
 install:
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt 
+
+setup:
+	python setup.py develop
 		
 test:
 	python -m pytest -vv

@@ -17,6 +17,9 @@ jobs:
       - name: Install dependencies 
         run: |
           make install
+      - name: Setup project
+        run: |
+          make setup
       - name: Perform unit tests
         run: |
           pytest

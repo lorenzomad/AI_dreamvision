@@ -1,7 +1,7 @@
 import sqlite3
 import pytest
 
-import sql_functions
+from dreamvision import sql_functions
 
 def test_creation():
     """test table creation function"""

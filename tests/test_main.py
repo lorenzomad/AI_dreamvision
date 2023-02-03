@@ -1,5 +1,5 @@
 import pytest
-import main
+from dreamvision import main
 import os
 import base64
 import sqlite3

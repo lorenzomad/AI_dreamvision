@@ -60,7 +60,7 @@ class Main(MDApp):
     
     #connect db
     connection = sqlite3.connect("dreams.db")
-    sql_functions.create_db(connection, "schema.sql")
+    sql_functions.create_db(connection, "dreamvision/schema.sql")
 
     def build(self):
         return Builder.load_file("dreamvision.kv")

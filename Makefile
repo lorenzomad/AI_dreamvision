@@ -9,5 +9,6 @@ setup:
 	python setup.py develop
 		
 test:
-	python -m pytest -vv
+	export PYTHONPATH=. &&\
+	pytest
 

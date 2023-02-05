@@ -22,7 +22,7 @@ jobs:
           make setup
       - name: Perform unit tests
         run: |
-          pytest
+          python- m pytest
   
   build-android:
     name: Build for Android

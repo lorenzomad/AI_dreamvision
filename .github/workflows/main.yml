@@ -19,7 +19,7 @@ jobs:
           make install
       - name: Perform unit tests
         run: |
-          python- m pytest
+          make test
   
   build-android:
     name: Build for Android

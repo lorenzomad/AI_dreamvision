@@ -10,5 +10,5 @@ setup:
 		
 test:
 	export PYTHONPATH=. &&\
-	pytest
+	python -m pytest
 

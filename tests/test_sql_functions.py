@@ -1,12 +1,12 @@
 import sqlite3
 import pytest
-from dreamvision import sql_functions
+from src import sql_functions
 
 def test_creation():
     """test table creation function"""
     connection = sqlite3.connect("test.db")
     cursor = connection.cursor()
-    sql_functions.create_db(connection, "dreamvision/schema.sql")
+    sql_functions.create_db(connection, "src/schema.sql")
     cursor.execute(
         ''' SELECT count(name) 
         FROM sqlite_master 

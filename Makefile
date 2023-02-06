@@ -6,8 +6,5 @@ install:
 		pip install -r requirements.txt 
 
 test:
-	cd app/ &&\
-	export PYTHONPATH=. &&\
-	python -m pytest &&\
-	cd ../
+	python -m pytest
 

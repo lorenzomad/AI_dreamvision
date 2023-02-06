@@ -11,5 +11,6 @@ setup:
 test:
 	cd app/ &&\
 	export PYTHONPATH=. &&\
-	python -m pytest
+	python -m pytest &&\
+	cd ../
 

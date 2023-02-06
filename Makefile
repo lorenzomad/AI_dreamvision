@@ -9,6 +9,7 @@ setup:
 	python setup.py develop
 		
 test:
+	cd app/ &&\
 	export PYTHONPATH=. &&\
 	python -m pytest
 

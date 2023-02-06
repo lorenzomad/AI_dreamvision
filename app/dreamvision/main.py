@@ -3,13 +3,11 @@ from craiyon import Craiyon
 #kivy imports
 from kivymd.app import MDApp
 from kivy.lang import Builder
-from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.pickers import MDDatePicker
 from kivymd.uix.list import TwoLineAvatarIconListItem
 from kivy.properties import StringProperty
 
 #general imports
-import json
 import os
 import base64
 import sqlite3
@@ -31,10 +29,23 @@ def save_image(image_data, folder_name, title):
     file_name = folder_name + '/' + title.lower().replace(" ", "_") + ".jpg" 
     #append [1] if the file name exists
     while(os.path.exists(file_name)):
-        file_name = file_name + '(1)'
+        file_name = file_name.replace('.jpg', '(1).jpg')
     #write image file to disk
     with open(file_name, 'wb') as f:
         f.write(image_data)
+
+def load_last_image(connection):
+        """function to load the latest image"""
+        cursor = connection.cursor()
+        cursor.execute(
+            """SELECT file_name FROM dreams
+            ORDER BY id DESC
+            LIMIT 1;""")
+        results = cursor.fetchall()
+        if not results:
+            return 'images/dream_icon.jpg'
+        else:
+            return results[0][0]
 
 class Gallery_entry(TwoLineAvatarIconListItem):
     # kv custom object to visualize one dream entry
@@ -46,13 +57,18 @@ class Gallery_entry(TwoLineAvatarIconListItem):
 
 class Main(MDApp):
     """frontend building class"""
+    
     #connect db
     connection = sqlite3.connect("dreams.db")
-    # cursor = connection.cursor()
-    sql_functions.create_db(connection, "schema.sql")
-        
+    sql_functions.create_db(connection, "app/dreamvision/schema.sql")
+
     def build(self):
         return Builder.load_file("dreamvision.kv")
+
+    def on_start(self, **kwargs):
+        """on start let's load the latest image generated"""
+        self.load_main_image()
+        
         
     def generate_dream(self):
         """generates dream images"""
@@ -71,17 +87,7 @@ class Main(MDApp):
     #     # date_dialog.open()
 
     def load_main_image(self):
-        """function to load the latest image"""
-        cursor = self.connection.cursor()
-        cursor.execute(
-            """SELECT file_name FROM dreams
-            ORDER BY id DESC
-            LIMIT 1;""")
-        results = cursor.fetchall()
-        if not results:
-            self.root.main_image.source = 'images/dream_icon.jpg'
-        else:
-            self.root.main_image.source = results[0][0]
+        self.root.main_image.source = load_last_image(self.connection) 
 
     def load_gallery(self):
         """function to generate the images in the gallery at launch of the screen"""
@@ -101,16 +107,11 @@ class Main(MDApp):
 
     def close_connection(self):
         self.connection.close()
-        
-dreamvision = Main()
-dreamvision.run()
 
-# debug function to drop the table
-# drop_input = input("Do you want to drop the table?")
-# if drop_input.lower() == 'y':
-#     sql_functions.drop_table(dreamvision.connection)
-
-dreamvision.close_connection()
-
-
-
+    
+    
+if __name__ == "__main__":
+    
+    dreamvision = Main()
+    dreamvision.run()
+    dreamvision.close_connection()

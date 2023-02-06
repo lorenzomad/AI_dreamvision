@@ -31,11 +31,13 @@ MDScreen:
                 name: "scr1"
                 MDBoxLayout:
                     orientation: 'vertical'
+                    pos_hint: { "top":0.85, "bottom": 0.05}
+                    size_hint: 1, 0.80
                     
                     Image:
                         id: main_image
-                        pos_hint: {"center_x": .5, 'top': 0.8}
-                        size_hint: 0.3, 0.3
+                        pos_hint: {"center_x": .5}
+                        size_hint: 0.3,0.3 
 
                     MDTextField:
                         id: title_text
@@ -49,21 +51,22 @@ MDScreen:
                         id: description_text  
                         hint_text: 'Describe your dream'
                         multiline: False
-                        icon_right: "account-search"
+                        icon_right: "calendar"
                         required: True
                         pos_hint: {"center_x": .5}
                         size_hint: 0.8, 0.1
 
-                    MDIconButton:
-                        icon: 'calendar'
-                        on_release: app.show_date_picker()
-                        padding: '10dp'
+                    # MDIconButton:
+                    #     icon: 
+                    #     on_release: app.show_date_picker()
+                    #     padding: '10dp'
+                        
 
 
                     MDRaisedButton: 
                         text: "Generate a dream"
                         font_size: 32
-                        size: 100, 50
+                        size: "60dp", "40dp"
                         halign: "center"
                         pos_hint: {'center_x': 0.5, 'center_y': 0.1}
                         on_press: app.generate_dream()
@@ -75,6 +78,7 @@ MDScreen:
                     orientation: 'vertical'
                     MDLabel:
                         text: "Dream Gallery"
+                        font_size: 24
                         halign: "center"
                         size_hint: 1,0.2
 
@@ -101,17 +105,17 @@ MDScreen:
                     size: "56dp", "56dp"
                     source: "data/logo/kivy-icon-256.png"
     
-            MDLabel:
-                text: "Lorenzo Maddalena"
-                font_style: "Button"
-                size_hint_y: None
-                height: self.texture_size[1]
+            # MDLabel:
+            #     text: "Lorenzo Maddalena"
+            #     font_style: "Button"
+            #     size_hint_y: None
+            #     height: self.texture_size[1]
         
-            MDLabel:
-                text: "youremail@gmail.com"
-                font_style: "Caption"
-                size_hint_y: None
-                height: self.texture_size[1]
+            # MDLabel:
+            #     text: "youremail@gmail.com"
+            #     font_style: "Caption"
+            #     size_hint_y: None
+            #     height: self.texture_size[1]
             
             ScrollView:
                 MDList:
@@ -130,5 +134,5 @@ MDScreen:
                             screen_manager.current = "scr2"
                         text: "Dream gallery"
                         IconLeftWidget:
-                            icon: 'gallery'
+                            icon: 'image-album'
    

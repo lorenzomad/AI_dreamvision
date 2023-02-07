@@ -1,5 +1,7 @@
 setup:
-	python3 -m venv /.venv
+	pip install -e .
+
+
 
 install:
 	pip install --upgrade pip &&\

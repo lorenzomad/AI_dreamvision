@@ -1,3 +1,11 @@
+#general imports
+import os
+import base64
+import sqlite3
+
+from datetime import date
+
+#crayion
 from craiyon import Craiyon
 
 #kivy imports
@@ -7,12 +15,8 @@ from kivymd.uix.pickers import MDDatePicker
 from kivymd.uix.list import TwoLineAvatarIconListItem
 from kivy.properties import StringProperty
 
-#general imports
-import os
-import base64
-import sqlite3
+#local imports 
 import sql_functions
-from datetime import date
 
 def create_image(prompt):
     """generates image from the defined prompt using craiyon"""

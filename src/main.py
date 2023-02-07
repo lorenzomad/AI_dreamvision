@@ -112,6 +112,8 @@ class Main(MDApp):
     
 if __name__ == "__main__":
     
+    if not os.path.exists("./generated/"):
+        os.mkdir("./generated/")
     dreamvision = Main()
     dreamvision.run()
     dreamvision.close_connection()

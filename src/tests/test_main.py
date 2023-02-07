@@ -5,6 +5,7 @@ import sqlite3
 import kivymd
 
 from src import main
+from src import sql_functions
 
 
 def test_save_image():

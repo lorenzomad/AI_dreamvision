@@ -26,10 +26,12 @@ The backend implements the functions to:
 # Screenshots
 
 Dream generation page:
+
 <img width="244" alt="image_1" src="https://user-images.githubusercontent.com/106270843/217652624-511dcfb3-cad5-4211-88c8-ce23bcf8e5df.png">
 
 
 Dream gallery:
+
 <img width="248" alt="image_2" src="https://user-images.githubusercontent.com/106270843/217652653-e1a21d3a-08cc-4b22-bf30-beea8f13c9f8.png">
 
 

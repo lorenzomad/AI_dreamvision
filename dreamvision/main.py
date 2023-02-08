@@ -16,7 +16,7 @@ from kivymd.uix.list import TwoLineAvatarIconListItem
 from kivy.properties import StringProperty
 
 #local imports 
-from src import sql_functions
+from . import sql_functions
 
 def create_image(prompt):
     """generates image from the defined prompt using craiyon"""
@@ -64,7 +64,7 @@ class Main(MDApp):
     
     #connect db
     connection = sqlite3.connect("dreams.db")
-    sql_functions.create_db(connection, "src/schema.sql")
+    sql_functions.create_db(connection, "dreamvision/schema.sql")
 
     def build(self):
         return Builder.load_file("dreamvision.kv")

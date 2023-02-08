@@ -43,7 +43,7 @@ jobs:
           command: buildozer -v android debug
           repository_root: .
           #workdir contains the buildozer.spec 
-          workdir: 'app/dreamvision'
+          workdir: 'src/dreamvision'
           buildozer_version: stable
 
       - name: Upload artifacts

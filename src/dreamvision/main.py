@@ -91,7 +91,14 @@ class Main(MDApp):
     #     # date_dialog.open()
 
     def load_main_image(self):
+        """loads the last image available"""
         self.root.main_image.source = load_last_image(self.connection) 
+
+    def remove_image(self, filepath):
+        """removes the image from the db and the memory (if exists)"""
+        sql_functions.delete_image(self.connection, filepath)
+        if os.path.exists(filepath):
+            os.remove(filepath)
 
     def load_gallery(self):
         """function to generate the images in the gallery at launch of the screen"""

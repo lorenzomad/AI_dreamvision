@@ -17,9 +17,9 @@ jobs:
       - name: Install dependencies 
         run: |
           make install
-      - name: Perform unit tests
+      - name: Perform unit tests 
         run: |
-          python -m pytest
+          make test
   
   build-android:
     name: Build for Android

@@ -133,7 +133,7 @@ dmypy.json
 generated/ 
 dreams.db
 test.db
-test_images
+test_images/
 
 #save data
 save/

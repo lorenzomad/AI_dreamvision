@@ -1,3 +1,11 @@
+#general imports
+import os
+import base64
+import sqlite3
+
+from datetime import date
+
+#crayion
 from craiyon import Craiyon
 
 #kivy imports
@@ -7,12 +15,8 @@ from kivymd.uix.pickers import MDDatePicker
 from kivymd.uix.list import TwoLineAvatarIconListItem
 from kivy.properties import StringProperty
 
-#general imports
-import os
-import base64
-import sqlite3
-import sql_functions
-from datetime import date
+#local imports 
+from src.dreamvision import sql_functions
 
 def create_image(prompt):
     """generates image from the defined prompt using craiyon"""
@@ -60,7 +64,7 @@ class Main(MDApp):
     
     #connect db
     connection = sqlite3.connect("dreams.db")
-    sql_functions.create_db(connection, "app/dreamvision/schema.sql")
+    sql_functions.create_db(connection, "dreamvision/schema.sql")
 
     def build(self):
         return Builder.load_file("dreamvision.kv")
@@ -112,6 +116,8 @@ class Main(MDApp):
     
 if __name__ == "__main__":
     
+    if not os.path.exists("./generated/"):
+        os.mkdir("./generated/")
     dreamvision = Main()
     dreamvision.run()
     dreamvision.close_connection()

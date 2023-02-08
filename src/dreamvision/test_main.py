@@ -1,14 +1,19 @@
+import sys
 import pytest
-# from dreamvision import main
-# from dreamvision import *
 import os
 import base64
 import sqlite3
+import kivymd
+import pathlib
 
-def test_1():
-    pass
+#local imports
+# sys.path.insert(0, str(pathlib.Path(__file__).parent))
+# import main
+
 
 # def test_save_image():
+#     if not os.path.exists("./test_images/"):
+#         os.mkdir("./test_images/")
 #     image = "iVBORw0KGgoAAAANSUhEUgAAA4QAAAFKCAIAAADKUQaBAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAP+lSURBVHhepP1p32zb"
 #     image_data = base64.b64decode(image.replace(" ", "+"))
 #     main.save_image(image_data, 'test_images', 'test ImAge')

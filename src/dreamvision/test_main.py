@@ -4,7 +4,7 @@ import base64
 import sqlite3
 import kivymd
 
-from dreamvision import main
+import main
 
 
 def test_save_image():

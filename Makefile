@@ -6,6 +6,5 @@ install:
 		pip install -r requirements.txt 
 
 test:
-	export PYTHONPATH=. &&\
-		python -m pytest
+	python -m pytest
 

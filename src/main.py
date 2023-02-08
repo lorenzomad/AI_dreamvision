@@ -16,7 +16,7 @@ from kivymd.uix.list import TwoLineAvatarIconListItem
 from kivy.properties import StringProperty
 
 #local imports 
-from . import sql_functions
+from src.dreamvision import sql_functions
 
 def create_image(prompt):
     """generates image from the defined prompt using craiyon"""

@@ -1,12 +1,14 @@
 #:kivy 2.1.0
         
 <Gallery_entry>:
+    id: entry
     ImageLeftWidget:
         id: image
         source: root.image_source
 
     IconRightWidget:
         icon: root.icon
+        on_press: app.remove_image(root.image_source)
         
         
 MDScreen:

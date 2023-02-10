@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = hostpython==3.7.5,python3,plyer,kivy==master,craiyon.py,kivymd,https://github.com/kivymd/KivyMD/archive/master.zip,sdl2_ttf==2.0.15,pillow,requests,urllib3,charset-normalizer,idna,chardet,pysocks
+requirements = android,hostpython,python3,plyer,kivy==master,craiyon.py,kivymd,https://github.com/kivymd/KivyMD/archive/master.zip,sdl2_ttf==2.0.15,pillow,requests,urllib3,charset-normalizer,idna,chardet,pysocks
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes

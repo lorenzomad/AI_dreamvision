@@ -1,5 +1,5 @@
 name: Perform unit tests and android build
-on: [push]
+on: [push, pull_request]
 
 jobs:
   # Build job. Builds app for Android with Buildozer
@@ -48,7 +48,7 @@ jobs:
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
-        if: github.ref == ['refs/heads/main', 'refs/heads/fix_android_crash']
+        if: github.ref == 'refs/heads/main'
         with:
           name: package
           path: ${{ steps.buildozer.outputs.filename }}

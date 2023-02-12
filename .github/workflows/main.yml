@@ -48,7 +48,7 @@ jobs:
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == ['refs/heads/main', 'refs/heads/fix_android_crash']
         with:
           name: package
           path: ${{ steps.buildozer.outputs.filename }}

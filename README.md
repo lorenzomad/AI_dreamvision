@@ -41,4 +41,4 @@ Continuous testing and automated building of the apk file with buildozer for kiv
 
 
 # Debug functions
-'''adb logcat *:S python:D
+    adb logcat *:S python:D

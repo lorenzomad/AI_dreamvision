@@ -37,7 +37,7 @@ jobs:
           make install
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1.1.3
-        if: github.ref == 'refs/heads/main'
+        #if: github.ref == 'refs/heads/main'
         id: buildozer
         with:
           command: buildozer -v android debug

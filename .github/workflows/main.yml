@@ -1,5 +1,5 @@
 name: Perform unit tests and android build
-on: [push, pull_request]
+on: [push]
 
 jobs:
   # Build job. Builds app for Android with Buildozer

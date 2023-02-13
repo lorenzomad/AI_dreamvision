@@ -11,7 +11,6 @@ from craiyon import Craiyon
 #kivy imports
 from kivymd.app import MDApp
 from kivy.lang import Builder
-from kivymd.uix.pickers import MDDatePicker
 from kivymd.uix.list import TwoLineAvatarIconListItem
 from kivy.properties import StringProperty
 

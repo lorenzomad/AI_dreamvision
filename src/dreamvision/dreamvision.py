@@ -37,17 +37,17 @@ def save_image(image_data, folder_name, title):
         f.write(image_data)
 
 def load_last_image(connection):
-        """function to load the latest image"""
-        cursor = connection.cursor()
-        cursor.execute(
-            """SELECT file_name FROM dreams
-            ORDER BY id DESC
-            LIMIT 1;""")
-        results = cursor.fetchall()
-        if not results:
-            return 'images/dream_icon.jpg'
-        else:
-            return results[0][0]
+    """function to load the latest image"""
+    cursor = connection.cursor()
+    cursor.execute(
+        """SELECT file_name FROM dreams
+        ORDER BY id DESC
+        LIMIT 1;""")
+    results = cursor.fetchall()
+    if not results:
+        return 'images/dream_icon.jpg'
+    else:
+        return results[0][0]
 
 class Gallery_entry(TwoLineAvatarIconListItem):
     """kv custom object to visualize one dream entry in the dream gallery"""
@@ -71,8 +71,7 @@ class Dreamvision(MDApp):
     def on_start(self, **kwargs):
         """on start let's load the latest image generated"""
         self.load_main_image()
-        
-        
+                
     def generate_dream(self):
         """generates dream images"""
         dream_description = self.root.dream_description.text

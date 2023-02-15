@@ -4,7 +4,7 @@ import sys
 
 #local imports
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
-import sql_functions
+from dreamvision import sql_functions
 
 def test_create_db():
     """test table creation function"""

@@ -38,3 +38,7 @@ Dream gallery:
 The project has continous integration and building for pushes on the main branch: 
 Continuous testing and automated building of the apk file with buildozer for kivy
 [![Build](https://github.com/lorenzomad/AI_dreamvision/actions/workflows/main.yml/badge.svg)](https://github.com/lorenzomad/AI_dreamvision/actions/workflows/main.yml)
+
+
+# Debug functions
+    adb logcat *:S python:D

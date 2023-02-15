@@ -11,7 +11,6 @@ from craiyon import Craiyon
 #kivy imports
 from kivymd.app import MDApp
 from kivy.lang import Builder
-from kivymd.uix.pickers import MDDatePicker
 from kivymd.uix.list import TwoLineAvatarIconListItem
 from kivy.properties import StringProperty
 
@@ -64,7 +63,7 @@ class Main(MDApp):
     
     #connect db
     connection = sqlite3.connect("dreams.db")
-    sql_functions.create_db(connection, "src/dreamvision/schema.sql")
+    sql_functions.create_db(connection)
 
     def build(self):
         return Builder.load_file("dreamvision.kv")

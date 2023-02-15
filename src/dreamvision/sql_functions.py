@@ -2,13 +2,27 @@ import sqlite3
 # before using these functions, create a working connection to the db.
 # these functions assume your schema uses dreams as table name.
 
-def create_db(connection, schema_file):
+def create_db_from_file(connection, schema_file):
     """creates a schema on the connection"""
     cursor = connection.cursor()
     with open(schema_file, 'r') as rf:
         schema = rf.read()
     cursor.executescript(schema)
     
+def create_db(connection):
+    """creates a schema on the connection"""
+    cursor = connection.cursor()
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS dreams(
+    id INTEGER PRIMARY KEY,
+    title TEXT,
+    description TEXT,
+    date DATE,
+    file_name TEXT
+);
+""")
+
+
 
 def save_image(connection, title, description, date, save_folder):
     """function to save the images to the db"""

@@ -19,7 +19,7 @@ source.include_exts = py,png,jpg,kv,atlas
 #source.include_patterns = assets/*,images/*.png
 
 # (list) Source files to exclude (let empty to not exclude anything)
-source.exclude_exts = Makefile, README.md, requirements.txt
+source.exclude_exts = Makefile, README.md, requirements.txt, src/dreamvision/test*
 
 # (list) List of directory to exclude (let empty to not exclude anything)
 source.exclude_dirs = tests, bin, venv, generated, save
@@ -37,7 +37,8 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,plyer,pyjnius,kivy==2.0.0,craiyon.py,kivymd==0.104.1,docutils,sdl2_ttf==2.0.15,pillow,PIL,requests,urllib3,charset-normalizer,idna,chardet,pip,Image,pysocks
+requirements = python3,kivy==master,craiyon.py,kivymd==1.1.1,docutils,sdl2_ttf==2.0.15,pil,requests,urllib3,idna,idna-ssl,chardet,Image,pysocks,aiohttp,aiodns,pycares,pycparser,multidict,typing-extensions,attrs,cloudpickle,coveragepy,tomli,furo,hypothesis,mypy,myst-parser,pympler,certifi,pygments,pypiwin32,yarl,async-timeout,charset-normalizer==2.1.1,cchardet,aiosignal,frozenlist,aiofile,aiofiles,aiopath,anyio,sniffio,caio
+
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -74,7 +75,7 @@ osx.kivy_version = 2.1.0
 #
 
 # (bool) Indicate if the application should be fullscreen or not
-fullscreen = 1
+fullscreen = 0
 
 # (string) Presplash background color (for android toolchain)
 # Supported formats are: #RRGGBB #AARRGGBB or one of the following names:
@@ -95,13 +96,13 @@ fullscreen = 1
 
 # (list) Permissions
 # (See https://python-for-android.readthedocs.io/en/latest/buildoptions/#build-options-1 for all the supported syntaxes and properties)
-android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE
+android.permissions = INTERNET
 
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host
 
 # (int) Target Android API, should be as high as possible.
-#android.api = 31
+android.api = 33
 
 # (int) Minimum API your APK / AAB will support.
 #android.minapi = 21

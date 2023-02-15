@@ -20,6 +20,9 @@ jobs:
       - name: Perform unit tests 
         run: |
           make test
+      - name: Linting
+        run: |
+          make lint
   
   build-android:
     name: Build for Android

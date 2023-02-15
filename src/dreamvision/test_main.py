@@ -1,9 +1,7 @@
 import sys
-import pytest
 import os
 import base64
 import sqlite3
-import kivymd
 import pathlib
 
 #local imports

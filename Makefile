@@ -7,5 +7,8 @@ install:
 test:
 	pytest --ignore=src/dreamvision/test_main.py
 
-fulle_test:
+lint:
+	pylint src
+
+full_test:
 	pytest

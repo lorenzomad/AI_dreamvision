@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy==master,craiyon.py,kivymd==1.1.1,docutils,sdl2_ttf==2.0.15,pil,requests,urllib3,idna,chardet,Image,pysocks,aiohttp,multidict,attrs,certifi,pygments,pypiwin32,yarl,async-timeout,charset-normalizer==2.1.1,cchardet,aiosignal,frozenlist,aiofile,aiofiles,aiopath,anyio,sniffio,caio
+requirements = python3,kivy==master,craiyon.py,kivymd==1.1.1,docutils,sdl2_ttf==2.0.15,pil,requests,urllib3,idna,idna-ssl,chardet,Image,pysocks,aiohttp,aiodns,pycares,python-cffi,pycparser,multidict,typing-extensions,attrs,cloudpickle,coveragepy,tomli,furo,hypothesis,mypy,myst-parser,pympler,certifi,pygments,pypiwin32,yarl,async-timeout,charset-normalizer==2.1.1,cchardet,aiosignal,frozenlist,aiofile,aiofiles,aiopath,anyio,sniffio,caio,
 
 
 # (str) Custom source folders for requirements

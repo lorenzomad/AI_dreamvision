@@ -1,6 +1,6 @@
-import sqlite3
-# before using these functions, create a working connection to the db.
-# these functions assume your schema uses dreams as table name.
+""" module containing supporting sql functions to interact with the db.
+before using these functions, create a working connection to the db.
+these functions assume your schema uses dreams as table name."""
 
 def create_db_from_file(connection, schema_file):
     """creates a schema on the connection"""

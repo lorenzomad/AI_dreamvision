@@ -5,7 +5,10 @@ install:
 	pip install --upgrade pip && pip install -r requirements.txt 
 
 test:
-	pytest --ignore=src/dreamvision/test_main.py
+	python -m pytest --ignore src/dreamvision/test_dreamvision.py
 
-fulle_test:
-	pytest
+lint:
+	pylint --disable=C src
+
+full_test:
+	python -m pytest

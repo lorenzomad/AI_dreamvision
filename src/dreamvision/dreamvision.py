@@ -54,7 +54,6 @@ class Gallery_entry(TwoLineAvatarIconListItem):
     """kv custom object to visualize one dream entry in the dream gallery"""
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-    icon = StringProperty("")
     image_source = StringProperty("")
 
 
@@ -109,8 +108,7 @@ class Dreamvision(MDApp):
             self.root.ids['gallery'].add_widget(
                 Gallery_entry(text=title, 
                 secondary_text = description + '\n' + date,
-                image_source = file_name,
-                icon = 'delete'
+                image_source = file_name
                 )
             )
 

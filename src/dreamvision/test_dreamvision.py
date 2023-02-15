@@ -6,7 +6,7 @@ import pathlib
 
 #local imports
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
-from dreamvision.dreamvision import save_image, create_image, load_last_image, Dreamvision
+from dreamvision.dreamvision import save_image, load_last_image
 
 
 def test_save_image():

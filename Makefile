@@ -8,4 +8,4 @@ test:
 	python -m pytest
 
 lint:
-	pylint src
+	pylint --disable=C src

@@ -10,8 +10,6 @@ def main():
     dreamvision.run()
     dreamvision.close_connection()
 
-
-
 if __name__ == "__main__":
     main()
     
